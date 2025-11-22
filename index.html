@@ -48,6 +48,20 @@
         max-height: 500px; /* Sufficient height to show all content */
         transition: max-height 0.3s ease-in;
       }
+      /* Typewriter cursor */
+      .typewriter-cursor {
+        display: inline-block;
+        width: 0.65ch;
+        margin-left: 0.25rem;
+        background-color: transparent;
+        color: #06b6d4;
+        animation: blink 1s steps(2, start) infinite;
+      }
+      @keyframes blink {
+        to {
+          visibility: hidden;
+        }
+      }
     </style>
   </head>
 
@@ -149,13 +163,14 @@
           <h1
             class="text-6xl sm:text-7xl lg:text-8xl font-extrabold text-white leading-tight"
           >
-            Nathaniel Sturtz
+            Nate Sturtz
           </h1>
           <p class="text-2xl sm:text-3xl font-light text-gray-400">
-            A hands-on
-            <span class="text-white font-semibold"
-              >Datacenter Technician &amp; Systems Operator</span
-            >
+            A
+            <span class="text-white font-semibold">
+              <span id="typewriter-text" aria-live="polite"></span>
+              <span class="typewriter-cursor" aria-hidden="true">|</span>
+            </span>
           </p>
           <a
             href="#about"
@@ -175,11 +190,11 @@
 
           <div class="grid md:grid-cols-3 gap-12 items-center">
             <div class="md:col-span-1 flex justify-center">
-              <img
+              <!-- <img
                 src=""
                 alt="Professional Portrait"
                 class="rounded-full object-cover w-64 h-64 border-4 border-cyan-500 shadow-2xl transition duration-500 hover:scale-105"
-              />
+              />-->
             </div>
             <div class="md:col-span-2 text-lg space-y-6 text-gray-400">
               <p>
@@ -188,14 +203,15 @@
                 environments in home labs and production settings. Experienced
                 with Ubuntu, Debian, and team-based OpenBSD administration.
                 Comfortable with physical infrastructure tasks including rack
-                builds, cable management, PDUs, and basic UPS handling.
+                deployments, server builds, cable management, PDUs, and basic
+                UPS handling.
               </p>
               <p>
                 Strong troubleshooting and customer-facing support background
                 (Tier-1 support, help desk) with exposure to networking
                 fundamentals (Ethernet, VLANs, DHCP, DNS), LAMP stack
-                administration, and scripting for automation. Fast learner who
-                follows runbooks and safety procedures;
+                administration, and scripting for automation. Fast, hands on,
+                learner who follows and safety procedures;
               </p>
               <p>
                 Notable home-lab and project work includes PXE/iPXE
@@ -205,7 +221,7 @@
                   >projectglass.xyz</a
                 >), and <strong>ScratchUpload</strong> — a CDN for
                 images/avatars used by Pluralkit and Simply Plural to improve
-                accessibility and UX for the DID/OSDD community.
+                accessibility and UX for a community.
               </p>
             </div>
           </div>
@@ -299,7 +315,7 @@
               </h3>
               <p class="text-gray-400 mb-4">
                 A modern, client-friendly JavaScript search engine providing
-                fast, accessible search experiences. 
+                fast, accessible search experiences.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -310,7 +326,6 @@
                   class="text-xs font-medium bg-cyan-900/50 text-cyan-400 px-3 py-1 rounded-full"
                   >Search</span
                 >
-  
               </div>
               <a
                 href="https://projectglass.xyz"
@@ -356,7 +371,7 @@
                   class="text-xs font-medium bg-cyan-900/50 text-cyan-400 px-3 py-1 rounded-full"
                   >Images</span
                 >
-                              <span
+                <span
                   class="text-xs font-medium bg-cyan-900/50 text-cyan-400 px-3 py-1 rounded-full"
                   >Accessibility</span
                 >
@@ -409,7 +424,8 @@
             class="bg-gray-900 p-8 md:p-12 rounded-xl shadow-2xl border border-gray-700 text-center"
           >
             <p class="text-xl text-gray-400 mb-4">
-              I'm available for contract and full-time roles. Preferred contact is email or phone.
+              I'm available for contract and full-time roles. Preferred contact
+              is email or phone.
             </p>
 
             <div class="space-y-2">
@@ -419,7 +435,9 @@
               >
                 contact@sturtz.xyz
               </a>
-              <div class="text-gray-400">+1 (470) 219-8806 • Des Moines, IA</div>
+              <div class="text-gray-400">
+                +1 (470) 219-8806 • Des Moines, IA
+              </div>
             </div>
           </div>
         </div>
@@ -435,4 +453,56 @@
       </div>
     </footer>
   </body>
+  <script>
+    (function () {
+      const phrases = [
+        "Hands-on Datacenter Technician",
+        "Systems Operator",
+        "Linux Administrator",
+        "Datacenter Hardware Engineer",
+        "On-call Support",
+        "Infrastructure Automation",
+        "Human",
+      ];
+
+      const el = document.getElementById("typewriter-text");
+      if (!el) return;
+
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let typing = true;
+      const typeSpeed = 75; // ms per character
+      const eraseSpeed = 30;
+      const delayAfterType = 1250; // ms to wait after typing a phrase
+
+      function tick() {
+        const current = phrases[phraseIndex];
+        if (typing) {
+          el.textContent = current.slice(0, charIndex + 1);
+          charIndex++;
+          if (charIndex === current.length) {
+            typing = false;
+            setTimeout(tick, delayAfterType);
+            return;
+          }
+          setTimeout(tick, typeSpeed);
+        } else {
+          el.textContent = current.slice(0, charIndex - 1);
+          charIndex--;
+          if (charIndex === 0) {
+            typing = true;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            setTimeout(tick, typeSpeed);
+            return;
+          }
+          setTimeout(tick, eraseSpeed);
+        }
+      }
+
+      // Start after DOM load and small delay so it feels natural
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(tick, 300);
+      });
+    })();
+  </script>
 </html>
