@@ -33,6 +33,12 @@
         margin-top: 8px;
         border-radius: 9999px;
       }
+      .gradient-text {
+        background: linear-gradient(to right, #22d3ee, #0ea5e9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
 
       /* * CSS Checkbox Hack for Mobile Menu Toggle 
         * We use max-height transition to animate the opening/closing.
@@ -161,9 +167,9 @@
         <div class="max-w-4xl space-y-6">
           <p class="text-xl text-cyan-400 font-medium">Hello, I'm</p>
           <h1
-            class="text-6xl sm:text-7xl lg:text-8xl font-extrabold text-white leading-tight"
+            class="text-6xl sm:text-7xl lg:text-8xl font-extrabold leading-tight"
           >
-            Nate Sturtz
+            <span class="gradient-text"> Nate Sturtz </span>
           </h1>
           <p class="text-2xl sm:text-3xl font-light text-gray-400">
             A
@@ -174,7 +180,7 @@
           </p>
           <a
             href="#about"
-            class="inline-block mt-8 px-8 py-3 bg-cyan-600 text-white font-semibold rounded-lg shadow-lg hover:bg-cyan-700 transform hover:scale-105 transition duration-300 ease-in-out"
+            class="inline-block mt-8 px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition duration-300 ease-in-out"
           >
             View Resume
           </a>
@@ -301,7 +307,7 @@
       <section id="projects" class="py-20 md:py-32">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <h2 class="text-4xl font-bold section-title text-white mb-12">
-            Featured Projects
+            My Projects
           </h2>
 
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -417,7 +423,7 @@
       >
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
           <h2 class="text-4xl font-bold section-title text-white mb-12">
-            Get In Touch
+            Contact Me
           </h2>
 
           <div
