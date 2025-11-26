@@ -7,7 +7,7 @@ const PORT = 80;
 app.use(express.json());
 
 // --- Serve Website ---
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, "_site")));
 
 // --- Server Start ---
 app.listen(PORT, () => {
