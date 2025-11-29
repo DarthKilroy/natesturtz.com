@@ -25,7 +25,7 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/darthkilroy/natesturtz.com:${{ github.sha }}
-# Prevent automatic deployment for now
+          
       - name: Update container image on Edge
         uses: BunnyWay/actions/container-update-image@main
         with:
