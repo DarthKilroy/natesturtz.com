@@ -3,20 +3,22 @@ FROM node:18-alpine
 # Create app directory
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json and package-lock.json are copied when available
-COPY package.json ./
-RUN npm install --production
+# Copy package files first and install all deps (including devDeps)
+# so we can run the Tailwind build during image build.
+COPY package.json package-lock.json* ./
+RUN npm install
 
 # Bundle app source
 COPY . .
 
-# Use non-root user for security
+# Build assets (Tailwind CSS)
+RUN npm run build:css && npm prune --production
+
+# Use non-root user for security and set ownership
 RUN chown -R node:node /usr/src/app
 USER node
 
 EXPOSE 80
 
-RUN npm run build:css
-
-CMD ["npm", "run"]
+# Use the start script to run the server
+CMD ["npm", "start"]
