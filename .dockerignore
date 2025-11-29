@@ -7,3 +7,5 @@ Dockerfile
 .gitignore
 dist
 *.log
+_site/assets/css/tailwind.css
+package-lock.json

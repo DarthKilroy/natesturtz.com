@@ -17,4 +17,6 @@ USER node
 
 EXPOSE 80
 
-CMD ["node", "server.js"]
+RUN npm run build:css
+
+CMD ["npm", "run"]
